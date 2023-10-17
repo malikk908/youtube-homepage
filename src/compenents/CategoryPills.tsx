@@ -43,27 +43,27 @@ export function CategoryPills({
       }, [categories, translate])
 
     return (
-        <div ref={containerRef} className="overflow-x-hidden relative">
+        <div ref={containerRef} className="overflow-x-hidden h-11 relative ">
             <div 
-            className="flex whitespace-nowrap gap-3 transition-transform w-[max-content]"
+            className="flex whitespace-nowrap gap-3 transition-transform w-[max-content] pt-1.5"
             style={{ transform: `translateX(-${translate}px)` }}>
                 {categories.map(category => (
                     <Button
                         key={category}
                         onClick={() => onSelect(category)}
                         variant={selectedCategory === category ? "dark" : "default"}
-                        className="py-1 px-3 rounded-lg whitespace-nowrap"
+                        className={`py-1 px-3 rounded-lg whitespace-nowrap ${selectedCategory === category ? "dark:bg-secondary dark:hover:bg-white dark:text-black" : "dark:bg-secondary-dark dark:hover:bg-secondary-dark-hover dark:text-[#f1f1f1]"}`}
                     >
                         {category}
                     </Button>
                 ))}
             </div>
             {isLeftVisible && (
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 bg-gradient-to-r from-white from-50% to-transparent w-24 h-full">
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 bg-gradient-to-r from-white dark:from-[#0f0f0f] from-50% to-transparent w-24 h-full">
                 <Button 
                 size="icon" 
                 variant="ghost" 
-                className="h-full aspect-square w-auto p-1.5"
+                className="h-11 aspect-square w-auto p-1.5 dark:text-[#f1f1f1] dark:hover:bg-secondary-dark"
                 onClick={() => {
                     setTranslate(translate => {
                       const newTranslate = translate - TRANSLATE_AMOUNT
@@ -77,11 +77,11 @@ export function CategoryPills({
             </div>
             )}
             {isRightVisible && (
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 bg-gradient-to-l from-white from-50% to-transparent w-24 h-full flex justify-end">
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 bg-gradient-to-l from-white dark:from-[#0f0f0f] from-50% to-transparent w-24 h-full flex justify-end">
                 <Button 
                 size="icon" 
                 variant="ghost" 
-                className="h-full aspect-square w-auto p-1.5"
+                className="h-full aspect-square w-auto p-1.5 dark:text-[#f1f1f1] dark:hover:bg-secondary-dark"
                 onClick={() => {
                     setTranslate(translate => {
                         if (containerRef.current == null) {

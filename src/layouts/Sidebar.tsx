@@ -12,13 +12,13 @@ export function Sidebar() {
     return (
         <>
 
-            <aside className={`flex-col items-center gap-6 px-1 ${isLargeOpen ? "lg:hidden" : "md:flex"} md:flex hidden `}>
+            <aside className={`flex-col items-center gap-2 px-1 dark:bg-[#0f0f0f] dark:text-[#f1f1f1] ${isLargeOpen ? "lg:hidden" : "md:flex"} md:flex hidden `}>
 
                 <SmallSidebarItem Icon={Home} title="Home" url="/" />
                 <SmallSidebarItem Icon={Repeat} title="Shorts" url="/shorts" />
                 <SmallSidebarItem
                     Icon={Clapperboard}
-                    title="Subscriptions"
+                    title="Subscrip"
                     url="/subscriptions"
                 />
                 <SmallSidebarItem Icon={Library} title="Library" url="/library" />
@@ -32,7 +32,7 @@ export function Sidebar() {
                 />
             )}
 
-            <aside className={`bg-white z-[999] w-58 lg:sticky absolute top-0 overflow-y-auto scrollbar-hidden pb-4 flex-col gap-2 px-2 transition-transform duration-700 ${isLargeOpen ? "lg:flex" : "lg:hidden"} ${isSmallOpen ? "flex bg-white max-h-screen translate-x-0" : "-translate-x-full lg:translate-x-0"} `}>
+            <aside className={`bg-white z-[999] w-58 lg:sticky absolute top-0 overflow-y-auto scrollbar-hidden pb-4 flex-col gap-2 px-2 transition-transform duration-700 dark:text-[#f1f1f1] dark:bg-[#0f0f0f]  ${isLargeOpen ? "lg:flex" : "lg:hidden"} ${isSmallOpen ? "flex bg-white max-h-screen translate-x-0" : "-translate-x-full lg:translate-x-0"} `}>
 
 
                 <div className="lg:hidden sticky top-0 pt-2 pb-4 px-2 bg-white">
@@ -46,7 +46,7 @@ export function Sidebar() {
                         title="Subscriptions"
                         url="/subscriptions" />
                 </LargeSidebarSection>
-                <hr />
+                <hr className="dark:border-secondary-dark-hover" />
                 <LargeSidebarSection
                     visibleItemCount={5}
                 >
@@ -59,12 +59,12 @@ export function Sidebar() {
                     />
                     <LargeSidebarItem
                         IconOrImgUrl={PlaySquare}
-                        title="Your Videos"
+                        title="Your videos"
                         url="/your-videos"
                     />
                     <LargeSidebarItem
                         IconOrImgUrl={Clock}
-                        title="Watch Later"
+                        title="Watch later"
                         url="/playlist?list=WL"
                     />
                     {playlists.map(playlist => (
@@ -76,7 +76,7 @@ export function Sidebar() {
                         />
                     ))}
                 </LargeSidebarSection>
-                <hr />
+                <hr className="dark:border-secondary-dark-hover" />
 
                 <LargeSidebarSection title="Subscriptions">
                     {subscriptions.map(subscription => (
@@ -88,7 +88,7 @@ export function Sidebar() {
                         />
                     ))}
                 </LargeSidebarSection>
-                <hr />
+                <hr className="dark:border-secondary-dark-hover" />
                 <LargeSidebarSection title="Explore">
                     <LargeSidebarItem
                         IconOrImgUrl={Flame}
@@ -154,7 +154,7 @@ function SmallSidebarItem({
     url
 }: SmallSidebarItemProps) {
     return (
-        <a href={url} className="flex flex-col items-center">
+        <a href={url} className={twMerge(buttonStyles({ variant: 'ghost'}), `w-full py-4 rounded-xl flex flex-col items-center dark:hover:bg-secondary-dark` )}>
             <Icon className="h-6 w-6" />
             <div className="text-xs">{title}</div>
         </a>
@@ -188,7 +188,7 @@ function LargeSidebarSection({
             {showMore &&
                 <Button
                     onClick={() => setIsExpanded(e => !e)}
-                    variant="ghost" className="w-full flex items-center rounded-lg gap-4 p-3 text-sm">
+                    variant="ghost" className="w-full flex items-center rounded-lg gap-4 p-3 text-sm dark:hover:bg-secondary-dark">
                     {isExpanded ? <ChevronUp /> : <ChevronDown />}
 
                     {isExpanded ? "Show less" : "Show more"}
@@ -217,7 +217,7 @@ function LargeSidebarItem({
         <a href={url}
             className={twMerge(
                 buttonStyles({ variant: "ghost" }),
-                `w-full flex items-center rounded-lg gap-4 p-3 ${isActive ? "font-bold bg-neutral-100 hover:bg-secondary" : undefined
+                `w-full flex items-center rounded-lg gap-6 py-2 px-3 dark:hover:bg-secondary-dark ${isActive ? "font-bold bg-neutral-100 hover:bg-secondary dark:bg-secondary-dark dark:hover:bg-secondary-dark-hover" : undefined
                 }`
             )}
         >
